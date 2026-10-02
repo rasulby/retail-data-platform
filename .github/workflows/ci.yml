@@ -1,0 +1,26 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: cp .env.example .env
+      - run: make compile
+      - run: make lint
+      - run: make test
+      - run: make config
+      - run: dbt parse --project-dir dbt --profiles-dir dbt
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: retail
+          POSTGRES_PASSWORD: validation-only
+          POSTGRES_DB: retail
