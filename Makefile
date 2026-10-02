@@ -1,4 +1,4 @@
-.PHONY: init up down logs trigger smoke test lint compile config dbt-parse
+.PHONY: init up down logs trigger smoke test lint compile config dbt-parse clean
 
 DATE ?= 2026-01-01
 
@@ -35,3 +35,7 @@ config:
 dbt-parse:
 	docker compose run --rm airflow-scheduler bash -c 'cd /opt/airflow/project/dbt && dbt parse --profiles-dir .'
 
+clean:
+	docker compose down -v --remove-orphans
+	rm -rf data/generated/*
+	rm -rf logs/*
