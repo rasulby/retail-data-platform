@@ -10,10 +10,12 @@ models:
     staging:
       +schema: staging
       +materialized: view
+      +tags: [staging]
     curated:
       +schema: curated
       +materialized: table
+      +tags: [curated]
     serving:
       +schema: serving
       +materialized: table
-
+      +tags: [serving]

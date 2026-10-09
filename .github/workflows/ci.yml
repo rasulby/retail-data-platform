@@ -24,3 +24,11 @@ jobs:
           POSTGRES_USER: retail
           POSTGRES_PASSWORD: validation-only
           POSTGRES_DB: retail
+      - run: dbt ls --quiet --project-dir dbt --profiles-dir dbt --select tag:staging --resource-type model --output name > /tmp/staging-models.txt
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: retail
+          POSTGRES_PASSWORD: validation-only
+          POSTGRES_DB: retail
+      - run: test "$(wc -l < /tmp/staging-models.txt)" -eq 4

@@ -1,8 +1,12 @@
-.PHONY: init up down logs trigger smoke test lint compile config dbt-parse clean
+.PHONY: prepare init up down logs trigger smoke test lint compile config dbt-parse dbt-staging
 
 DATE ?= 2026-01-01
 
-init:
+prepare:
+	mkdir -p data/generated logs
+	chmod 0777 data data/generated logs
+
+init: prepare
 	docker compose up airflow-init
 
 up: init
@@ -33,9 +37,7 @@ config:
 	docker compose config --quiet
 
 dbt-parse:
-	docker compose run --rm airflow-scheduler bash -c 'cd /opt/airflow/project/dbt && dbt parse --profiles-dir .'
+	docker compose run --rm airflow-scheduler dbt parse --project-dir /opt/airflow/project/dbt --profiles-dir /opt/airflow/project/dbt
 
-clean:
-	docker compose down -v --remove-orphans
-	rm -rf data/generated/*
-	rm -rf logs/*
+dbt-staging:
+	docker compose run --rm airflow-scheduler dbt run --profiles-dir /opt/airflow/project/dbt --project-dir /opt/airflow/project/dbt --fail-fast --select tag:staging

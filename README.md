@@ -62,7 +62,7 @@ cp .env.example .env
 make up
 ```
 
-`make up` builds the Airflow image, initializes Airflow metadata/admin user, then starts PostgreSQL, the scheduler, and webserver. Wait until `docker compose ps` reports healthy services. Open <http://localhost:8080> and sign in with the safe local defaults `admin` / `admin`. Change those values in `.env` outside a local demonstration.
+`make up` creates writable bind-mount directories, builds the Airflow image, initializes Airflow metadata/admin user, then starts PostgreSQL, the scheduler, and webserver. Wait until `docker compose ps` reports healthy services. Open <http://localhost:8080> and sign in with the safe local defaults `admin` / `admin`. Change those values in `.env` outside a local demonstration.
 
 All runtime connection settings come from `.env`; application code contains no host or credential defaults. `.env` is ignored by Git.
 
@@ -87,6 +87,17 @@ docker compose exec airflow-scheduler airflow dags list-runs -d retail_daily_pip
 ```
 
 Tasks are deliberately separate: `generate_data → ingest_raw → dbt_staging → dbt_curated → data_quality → publish_serving`. Default trigger rules stop downstream tasks after a failure. Ingestion retries twice at one-minute intervals.
+
+The dbt layers use explicit tags rather than directory-name inference. To rerun and troubleshoot only the four staging models against an already-loaded raw layer:
+
+```bash
+make dbt-staging
+docker compose exec postgres psql -U retail -d retail -c "select schemaname, viewname from pg_views where schemaname='staging' order by viewname;"
+```
+
+This must list `stg_customers`, `stg_order_items`, `stg_orders`, and `stg_products`. The Airflow task invokes `dbt run` directly with absolute project/profile paths and fail-fast behavior, so dbt output is visible in the task log and a dbt failure fails the task. The custom `generate_schema_name` macro deliberately creates the exact `staging` schema rather than dbt's default `public_staging` name.
+
+All dbt invocations place the subcommand before its flags, for example `dbt run --profiles-dir ...` and `dbt test --profiles-dir ...`. This ordering is used consistently by Airflow, Make, and CI.
 
 ## Verify every layer
 
@@ -176,6 +187,7 @@ make lint       # Ruff
 make compile    # Python bytecode/syntax validation
 make config     # resolved Compose validation
 make dbt-parse  # dbt manifest parsing in the project image
+make dbt-staging # run only the four staging views against loaded raw data
 ```
 
 CI runs those lightweight Python checks, Compose configuration validation, and dbt parsing for every pull request and push to `main`. The full Airflow smoke test remains a local integration check to keep CI economical.
@@ -187,4 +199,3 @@ make down
 ```
 
 After review, a repository administrator should enable branch protection for `main`, require the CI check, and add real run screenshots to the marked locations in `docs/evidence/phase-1.md`. No release tag is created during implementation.
-
