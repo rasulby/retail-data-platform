@@ -1,0 +1,8 @@
+$ docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U retail -d retail -c 'select * from serving.daily_sales_summary where order_date='"'"'2026-01-01'"'"';'
+ order_date | total_orders | total_items | gross_revenue | unique_customers 
+------------+--------------+-------------+---------------+------------------
+ 2026-01-01 |          600 |        5278 |     657501.87 |              231
+(1 row)
+
+
+Exit code: 0

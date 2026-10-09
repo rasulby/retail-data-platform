@@ -1,0 +1,15 @@
+$ docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U retail -d retail -c 'select '"'"'raw.raw_customers'"'"' as relation, count(*) from raw.raw_customers union all select '"'"'raw.raw_products'"'"', count(*) from raw.raw_products union all select '"'"'raw.raw_orders'"'"', count(*) from raw.raw_orders union all select '"'"'raw.raw_order_items'"'"', count(*) from raw.raw_order_items union all select '"'"'staging.stg_orders'"'"', count(*) from staging.stg_orders union all select '"'"'curated.fct_orders'"'"', count(*) from curated.fct_orders union all select '"'"'curated.fct_order_items'"'"', count(*) from curated.fct_order_items union all select '"'"'serving.daily_sales_summary'"'"', count(*) from serving.daily_sales_summary;'
+          relation           | count 
+-----------------------------+-------
+ raw.raw_customers           |  1750
+ raw.raw_products            |   840
+ raw.raw_orders              |  4200
+ raw.raw_order_items         | 14618
+ staging.stg_orders          |  4200
+ curated.fct_orders          |  4200
+ curated.fct_order_items     | 14618
+ serving.daily_sales_summary |     7
+(8 rows)
+
+
+Exit code: 0

@@ -1,0 +1,12 @@
+$ docker compose exec -T airflow-scheduler airflow tasks states-for-dag-run retail_daily_pipeline evidence_deliberate-failure_20261009T151907 -o table
+dag_id                | execution_date            | task_id         | state           | start_date                       | end_date                        
+======================+===========================+=================+=================+==================================+=================================
+retail_daily_pipeline | 2026-10-09T15:19:10+00:00 | dbt_staging     | upstream_failed | 2026-10-09T15:21:14.771328+00:00 | 2026-10-09T15:21:14.771328+00:00
+retail_daily_pipeline | 2026-10-09T15:19:10+00:00 | dbt_curated     | upstream_failed | 2026-10-09T15:21:15.516055+00:00 | 2026-10-09T15:21:15.516055+00:00
+retail_daily_pipeline | 2026-10-09T15:19:10+00:00 | data_quality    | upstream_failed | 2026-10-09T15:21:16.560235+00:00 | 2026-10-09T15:21:16.560235+00:00
+retail_daily_pipeline | 2026-10-09T15:19:10+00:00 | generate_data   | success         | 2026-10-09T15:19:11.743675+00:00 | 2026-10-09T15:19:11.960839+00:00
+retail_daily_pipeline | 2026-10-09T15:19:10+00:00 | ingest_raw      | failed          | 2026-10-09T15:21:14.538049+00:00 | 2026-10-09T15:21:14.707919+00:00
+retail_daily_pipeline | 2026-10-09T15:19:10+00:00 | publish_serving | upstream_failed | 2026-10-09T15:21:17.416357+00:00 | 2026-10-09T15:21:17.416357+00:00
+                                                                                                                                                           
+
+Exit code: 0

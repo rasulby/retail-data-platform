@@ -1,0 +1,8 @@
+   dataset   | rows | distinct_keys 
+-------------+------+---------------
+ customers   |  250 |           250
+ products    |  120 |           120
+ orders      |  600 |           600
+ order_items | 2098 |          2098
+(4 rows)
+

@@ -1,0 +1,8 @@
+{
+  "dag_id": "retail_daily_pipeline",
+  "run_id": "evidence_deliberate-failure_20261009T151907",
+  "state": "failed",
+  "execution_date": "2026-10-09T15:19:10+00:00",
+  "start_date": "2026-10-09T15:19:11.641839+00:00",
+  "end_date": "2026-10-09T15:21:18.462710+00:00"
+}

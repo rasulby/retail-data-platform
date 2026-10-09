@@ -1,0 +1,23 @@
+$ docker compose up -d postgres airflow-webserver airflow-scheduler
+ Network retail-data-platform_default Creating 
+ Network retail-data-platform_default Creating 
+ Network retail-data-platform_default Created 
+ Network retail-data-platform_default Created 
+ Container retail-data-platform-postgres-1 Creating 
+ Container retail-data-platform-postgres-1 Created 
+ Container retail-data-platform-airflow-webserver-1 Creating 
+ Container retail-data-platform-airflow-scheduler-1 Creating 
+ Container retail-data-platform-airflow-scheduler-1 Created 
+ Container retail-data-platform-airflow-webserver-1 Created 
+ Container retail-data-platform-postgres-1 Starting 
+ Container retail-data-platform-postgres-1 Started 
+ Container retail-data-platform-postgres-1 Waiting 
+ Container retail-data-platform-postgres-1 Waiting 
+ Container retail-data-platform-postgres-1 Healthy 
+ Container retail-data-platform-airflow-webserver-1 Starting 
+ Container retail-data-platform-postgres-1 Healthy 
+ Container retail-data-platform-airflow-scheduler-1 Starting 
+ Container retail-data-platform-airflow-scheduler-1 Started 
+ Container retail-data-platform-airflow-webserver-1 Started 
+
+Exit code: 0

@@ -1,0 +1,26 @@
+[2026-10-09T15:17:48.879+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-10-09T15:17:48.887+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: retail_daily_pipeline.ingest_raw evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:48.890+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: retail_daily_pipeline.ingest_raw evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:48.890+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 3
+[2026-10-09T15:17:48.897+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): ingest_raw> on 2026-10-09 15:17:46+00:00
+[2026-10-09T15:17:48.899+0000] {standard_task_runner.py:72} INFO - Started process 1465 to run task
+[2026-10-09T15:17:48.901+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'retail_daily_pipeline', 'ingest_raw', 'evidence_success_20261009T151745', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/retail_pipeline.py', '--cfg-path', '/tmp/tmp5hucrr0l']
+[2026-10-09T15:17:48.902+0000] {standard_task_runner.py:105} INFO - Job 43: Subtask ingest_raw
+[2026-10-09T15:17:48.932+0000] {task_command.py:467} INFO - Running <TaskInstance: retail_daily_pipeline.ingest_raw evidence_success_20261009T151745 [running]> on host c6bb6a15c707
+[2026-10-09T15:17:48.990+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering' AIRFLOW_CTX_DAG_ID='retail_daily_pipeline' AIRFLOW_CTX_TASK_ID='ingest_raw' AIRFLOW_CTX_EXECUTION_DATE='2026-10-09T15:17:46+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='evidence_success_20261009T151745'
+[2026-10-09T15:17:48.990+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-10-09T15:17:48.999+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-10-09T15:17:49.000+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', "cd /opt/airflow/project && python -m pipeline.ingest --logical-date '2026-01-01'"]
+[2026-10-09T15:17:49.004+0000] {subprocess.py:99} INFO - Output:
+[2026-10-09T15:17:49.101+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:49,101 INFO stage=ingest start logical_date=2026-01-01 input=data/generated/2026-01-01 output=PostgreSQL/raw
+[2026-10-09T15:17:49.106+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:49,106 INFO table=raw.raw_customers rows_read=250 rows_written=250
+[2026-10-09T15:17:49.107+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:49,107 INFO table=raw.raw_products rows_read=120 rows_written=120
+[2026-10-09T15:17:49.111+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:49,111 INFO table=raw.raw_orders rows_read=600 rows_written=600
+[2026-10-09T15:17:49.126+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:49,126 INFO table=raw.raw_order_items rows_read=2098 rows_written=2098
+[2026-10-09T15:17:49.130+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:49,127 INFO stage=ingest complete logical_date=2026-01-01 rows_written=3068
+[2026-10-09T15:17:49.131+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-10-09T15:17:49.142+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-10-09T15:17:49.143+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=retail_daily_pipeline, task_id=ingest_raw, run_id=evidence_success_20261009T151745, execution_date=20261009T151746, start_date=20261009T151748, end_date=20261009T151749
+[2026-10-09T15:17:49.155+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-10-09T15:17:49.166+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-10-09T15:17:49.167+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

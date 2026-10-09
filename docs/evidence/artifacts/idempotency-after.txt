@@ -1,0 +1,11 @@
+$ docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U retail -d retail -c 'select '"'"'customers'"'"' as dataset, count(*) from raw.raw_customers where logical_date='"'"'2026-01-01'"'"' union all select '"'"'products'"'"', count(*) from raw.raw_products where logical_date='"'"'2026-01-01'"'"' union all select '"'"'orders'"'"', count(*) from raw.raw_orders where logical_date='"'"'2026-01-01'"'"' union all select '"'"'order_items'"'"', count(*) from raw.raw_order_items where logical_date='"'"'2026-01-01'"'"';'
+   dataset   | count 
+-------------+-------
+ customers   |   250
+ products    |   120
+ orders      |   600
+ order_items |  2098
+(4 rows)
+
+
+Exit code: 0

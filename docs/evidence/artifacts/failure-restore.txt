@@ -1,0 +1,19 @@
+$ docker compose up -d --force-recreate airflow-scheduler airflow-webserver
+ Container retail-data-platform-postgres-1 Recreate 
+ Container retail-data-platform-postgres-1 Recreated 
+ Container retail-data-platform-airflow-scheduler-1 Recreate 
+ Container retail-data-platform-airflow-webserver-1 Recreate 
+ Container retail-data-platform-airflow-scheduler-1 Recreated 
+ Container retail-data-platform-airflow-webserver-1 Recreated 
+ Container retail-data-platform-postgres-1 Starting 
+ Container retail-data-platform-postgres-1 Started 
+ Container retail-data-platform-postgres-1 Waiting 
+ Container retail-data-platform-postgres-1 Waiting 
+ Container retail-data-platform-postgres-1 Healthy 
+ Container retail-data-platform-airflow-scheduler-1 Starting 
+ Container retail-data-platform-postgres-1 Healthy 
+ Container retail-data-platform-airflow-webserver-1 Starting 
+ Container retail-data-platform-airflow-scheduler-1 Started 
+ Container retail-data-platform-airflow-webserver-1 Started 
+
+Exit code: 0

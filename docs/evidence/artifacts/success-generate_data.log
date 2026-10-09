@@ -1,0 +1,26 @@
+[2026-10-09T15:17:47.540+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-10-09T15:17:47.547+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: retail_daily_pipeline.generate_data evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:47.549+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: retail_daily_pipeline.generate_data evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:47.549+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2026-10-09T15:17:47.553+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): generate_data> on 2026-10-09 15:17:46+00:00
+[2026-10-09T15:17:47.554+0000] {standard_task_runner.py:72} INFO - Started process 1455 to run task
+[2026-10-09T15:17:47.556+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'retail_daily_pipeline', 'generate_data', 'evidence_success_20261009T151745', '--job-id', '42', '--raw', '--subdir', 'DAGS_FOLDER/retail_pipeline.py', '--cfg-path', '/tmp/tmp24mccjp9']
+[2026-10-09T15:17:47.557+0000] {standard_task_runner.py:105} INFO - Job 42: Subtask generate_data
+[2026-10-09T15:17:47.577+0000] {task_command.py:467} INFO - Running <TaskInstance: retail_daily_pipeline.generate_data evidence_success_20261009T151745 [running]> on host c6bb6a15c707
+[2026-10-09T15:17:47.612+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering' AIRFLOW_CTX_DAG_ID='retail_daily_pipeline' AIRFLOW_CTX_TASK_ID='generate_data' AIRFLOW_CTX_EXECUTION_DATE='2026-10-09T15:17:46+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='evidence_success_20261009T151745'
+[2026-10-09T15:17:47.613+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-10-09T15:17:47.617+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-10-09T15:17:47.618+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', "cd /opt/airflow/project && python -m pipeline.generate --logical-date '2026-01-01'"]
+[2026-10-09T15:17:47.620+0000] {subprocess.py:99} INFO - Output:
+[2026-10-09T15:17:47.697+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:47,697 INFO stage=generate start logical_date=2026-01-01 output=data/generated/2026-01-01
+[2026-10-09T15:17:47.699+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:47,699 INFO dataset=customers rows_written=250
+[2026-10-09T15:17:47.700+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:47,700 INFO dataset=products rows_written=120
+[2026-10-09T15:17:47.701+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:47,701 INFO dataset=orders rows_written=600
+[2026-10-09T15:17:47.704+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:47,704 INFO dataset=order_items rows_written=2098
+[2026-10-09T15:17:47.704+0000] {subprocess.py:106} INFO - 2026-10-09 15:17:47,704 INFO stage=generate complete logical_date=2026-01-01 rows_written=3068
+[2026-10-09T15:17:47.707+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-10-09T15:17:47.720+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-10-09T15:17:47.720+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=retail_daily_pipeline, task_id=generate_data, run_id=evidence_success_20261009T151745, execution_date=20261009T151746, start_date=20261009T151747, end_date=20261009T151747
+[2026-10-09T15:17:47.770+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-10-09T15:17:47.784+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-10-09T15:17:47.784+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

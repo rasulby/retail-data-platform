@@ -1,0 +1,29 @@
+$ make smoke
+bash scripts/smoke.sh
+Checking PostgreSQL connectivity...
+ postgres_reachable 
+--------------------
+                  1
+(1 row)
+
+raw.raw_customers: 2000 rows
+staging.stg_orders: 4800 rows
+curated.fct_order_items: 16676 rows
+serving.daily_sales_summary: 8 rows
+Serving output:
+ order_date | total_orders | total_items | gross_revenue | unique_customers 
+------------+--------------+-------------+---------------+------------------
+ 2026-01-01 |          600 |        5278 |     657501.87 |              231
+ 2026-01-02 |          600 |        5177 |     635259.71 |              228
+ 2026-10-01 |          600 |        5318 |     660194.40 |              225
+ 2026-10-02 |          600 |        5099 |     675310.39 |              231
+ 2026-10-03 |          600 |        5217 |     670083.29 |              229
+ 2026-10-04 |          600 |        5156 |     696794.86 |              229
+ 2026-10-05 |          600 |        5317 |     675227.94 |              231
+ 2026-10-08 |          600 |        5216 |     649739.44 |              221
+(8 rows)
+
+Latest Airflow run state: success
+Smoke test passed.
+
+Exit code: 0

@@ -1,0 +1,7 @@
+$ docker compose exec -T airflow-scheduler dbt parse --project-dir /opt/airflow/project/dbt --profiles-dir /opt/airflow/project/dbt
+[0m15:17:44  Running with dbt=1.12.5
+[0m15:17:44  Registered adapter: postgres=1.9.0
+[0m15:17:44  Unable to do partial parsing because a project config has changed
+[0m15:17:44  Performance info: /opt/airflow/project/dbt/target/perf_info.json
+
+Exit code: 0

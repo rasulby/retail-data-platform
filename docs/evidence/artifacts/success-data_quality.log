@@ -1,0 +1,66 @@
+[2026-10-09T15:17:54.907+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-10-09T15:17:54.915+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: retail_daily_pipeline.data_quality evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:54.917+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: retail_daily_pipeline.data_quality evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:54.918+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2026-10-09T15:17:54.921+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): data_quality> on 2026-10-09 15:17:46+00:00
+[2026-10-09T15:17:54.923+0000] {standard_task_runner.py:72} INFO - Started process 1504 to run task
+[2026-10-09T15:17:54.924+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'retail_daily_pipeline', 'data_quality', 'evidence_success_20261009T151745', '--job-id', '46', '--raw', '--subdir', 'DAGS_FOLDER/retail_pipeline.py', '--cfg-path', '/tmp/tmpb72ukkko']
+[2026-10-09T15:17:54.925+0000] {standard_task_runner.py:105} INFO - Job 46: Subtask data_quality
+[2026-10-09T15:17:54.943+0000] {task_command.py:467} INFO - Running <TaskInstance: retail_daily_pipeline.data_quality evidence_success_20261009T151745 [running]> on host c6bb6a15c707
+[2026-10-09T15:17:54.973+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering' AIRFLOW_CTX_DAG_ID='retail_daily_pipeline' AIRFLOW_CTX_TASK_ID='data_quality' AIRFLOW_CTX_EXECUTION_DATE='2026-10-09T15:17:46+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='evidence_success_20261009T151745'
+[2026-10-09T15:17:54.974+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-10-09T15:17:54.979+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-10-09T15:17:54.979+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt test --profiles-dir /opt/airflow/project/dbt --project-dir /opt/airflow/project/dbt --fail-fast --select tag:staging tag:curated']
+[2026-10-09T15:17:54.982+0000] {subprocess.py:99} INFO - Output:
+[2026-10-09T15:17:55.704+0000] {subprocess.py:106} INFO - [0m15:17:55  Running with dbt=1.12.5
+[2026-10-09T15:17:55.793+0000] {subprocess.py:106} INFO - [0m15:17:55  Registered adapter: postgres=1.9.0
+[2026-10-09T15:17:55.943+0000] {subprocess.py:106} INFO - [0m15:17:55  Found 10 models, 19 data tests, 4 sources, 476 macros
+[2026-10-09T15:17:55.944+0000] {subprocess.py:106} INFO - [0m15:17:55
+[2026-10-09T15:17:55.944+0000] {subprocess.py:106} INFO - [0m15:17:55  Concurrency: 2 threads (target='dev')
+[2026-10-09T15:17:55.945+0000] {subprocess.py:106} INFO - [0m15:17:55
+[2026-10-09T15:17:55.984+0000] {subprocess.py:106} INFO - [0m15:17:55  1 of 17 START test assert_fct_orders_not_empty ................................. [RUN]
+[2026-10-09T15:17:55.984+0000] {subprocess.py:106} INFO - [0m15:17:55  2 of 17 START test assert_stg_orders_not_empty ................................. [RUN]
+[2026-10-09T15:17:56.003+0000] {subprocess.py:106} INFO - [0m15:17:56  1 of 17 PASS assert_fct_orders_not_empty ....................................... [[32mPASS[0m in 0.02s]
+[2026-10-09T15:17:56.004+0000] {subprocess.py:106} INFO - [0m15:17:56  2 of 17 PASS assert_stg_orders_not_empty ....................................... [[32mPASS[0m in 0.02s]
+[2026-10-09T15:17:56.005+0000] {subprocess.py:106} INFO - [0m15:17:56  3 of 17 START test not_null_dim_date_date_key .................................. [RUN]
+[2026-10-09T15:17:56.006+0000] {subprocess.py:106} INFO - [0m15:17:56  4 of 17 START test not_null_fct_order_items_order_item_id ...................... [RUN]
+[2026-10-09T15:17:56.020+0000] {subprocess.py:106} INFO - [0m15:17:56  3 of 17 PASS not_null_dim_date_date_key ........................................ [[32mPASS[0m in 0.02s]
+[2026-10-09T15:17:56.022+0000] {subprocess.py:106} INFO - [0m15:17:56  5 of 17 START test not_null_fct_orders_order_id ................................ [RUN]
+[2026-10-09T15:17:56.022+0000] {subprocess.py:106} INFO - [0m15:17:56  4 of 17 PASS not_null_fct_order_items_order_item_id ............................ [[32mPASS[0m in 0.02s]
+[2026-10-09T15:17:56.025+0000] {subprocess.py:106} INFO - [0m15:17:56  6 of 17 START test not_null_stg_customers_customer_id .......................... [RUN]
+[2026-10-09T15:17:56.036+0000] {subprocess.py:106} INFO - [0m15:17:56  5 of 17 PASS not_null_fct_orders_order_id ...................................... [[32mPASS[0m in 0.01s]
+[2026-10-09T15:17:56.037+0000] {subprocess.py:106} INFO - [0m15:17:56  7 of 17 START test not_null_stg_order_items_order_item_id ...................... [RUN]
+[2026-10-09T15:17:56.038+0000] {subprocess.py:106} INFO - [0m15:17:56  6 of 17 PASS not_null_stg_customers_customer_id ................................ [[32mPASS[0m in 0.01s]
+[2026-10-09T15:17:56.041+0000] {subprocess.py:106} INFO - [0m15:17:56  8 of 17 START test not_null_stg_orders_order_id ................................ [RUN]
+[2026-10-09T15:17:56.052+0000] {subprocess.py:106} INFO - [0m15:17:56  7 of 17 PASS not_null_stg_order_items_order_item_id ............................ [[32mPASS[0m in 0.01s]
+[2026-10-09T15:17:56.053+0000] {subprocess.py:106} INFO - [0m15:17:56  9 of 17 START test not_null_stg_products_product_id ............................ [RUN]
+[2026-10-09T15:17:56.054+0000] {subprocess.py:106} INFO - [0m15:17:56  8 of 17 PASS not_null_stg_orders_order_id ...................................... [[32mPASS[0m in 0.01s]
+[2026-10-09T15:17:56.057+0000] {subprocess.py:106} INFO - [0m15:17:56  10 of 17 START test relationships_stg_orders_customer_id__customer_id__ref_stg_customers_  [RUN]
+[2026-10-09T15:17:56.071+0000] {subprocess.py:106} INFO - [0m15:17:56  9 of 17 PASS not_null_stg_products_product_id .................................. [[32mPASS[0m in 0.02s]
+[2026-10-09T15:17:56.072+0000] {subprocess.py:106} INFO - [0m15:17:56  11 of 17 START test unique_dim_date_date_key ................................... [RUN]
+[2026-10-09T15:17:56.076+0000] {subprocess.py:106} INFO - [0m15:17:56  10 of 17 PASS relationships_stg_orders_customer_id__customer_id__ref_stg_customers_  [[32mPASS[0m in 0.02s]
+[2026-10-09T15:17:56.078+0000] {subprocess.py:106} INFO - [0m15:17:56  12 of 17 START test unique_fct_order_items_order_item_id ....................... [RUN]
+[2026-10-09T15:17:56.086+0000] {subprocess.py:106} INFO - [0m15:17:56  11 of 17 PASS unique_dim_date_date_key ......................................... [[32mPASS[0m in 0.01s]
+[2026-10-09T15:17:56.087+0000] {subprocess.py:106} INFO - [0m15:17:56  13 of 17 START test unique_fct_orders_order_id ................................. [RUN]
+[2026-10-09T15:17:56.091+0000] {subprocess.py:106} INFO - [0m15:17:56  12 of 17 PASS unique_fct_order_items_order_item_id ............................. [[32mPASS[0m in 0.01s]
+[2026-10-09T15:17:56.093+0000] {subprocess.py:106} INFO - [0m15:17:56  14 of 17 START test unique_stg_customers_customer_id ........................... [RUN]
+[2026-10-09T15:17:56.101+0000] {subprocess.py:106} INFO - [0m15:17:56  13 of 17 PASS unique_fct_orders_order_id ....................................... [[32mPASS[0m in 0.01s]
+[2026-10-09T15:17:56.103+0000] {subprocess.py:106} INFO - [0m15:17:56  14 of 17 PASS unique_stg_customers_customer_id ................................. [[32mPASS[0m in 0.01s]
+[2026-10-09T15:17:56.103+0000] {subprocess.py:106} INFO - [0m15:17:56  15 of 17 START test unique_stg_order_items_order_item_id ....................... [RUN]
+[2026-10-09T15:17:56.104+0000] {subprocess.py:106} INFO - [0m15:17:56  16 of 17 START test unique_stg_orders_order_id ................................. [RUN]
+[2026-10-09T15:17:56.118+0000] {subprocess.py:106} INFO - [0m15:17:56  16 of 17 PASS unique_stg_orders_order_id ....................................... [[32mPASS[0m in 0.01s]
+[2026-10-09T15:17:56.120+0000] {subprocess.py:106} INFO - [0m15:17:56  17 of 17 START test unique_stg_products_product_id ............................. [RUN]
+[2026-10-09T15:17:56.123+0000] {subprocess.py:106} INFO - [0m15:17:56  15 of 17 PASS unique_stg_order_items_order_item_id ............................. [[32mPASS[0m in 0.02s]
+[2026-10-09T15:17:56.129+0000] {subprocess.py:106} INFO - [0m15:17:56  17 of 17 PASS unique_stg_products_product_id ................................... [[32mPASS[0m in 0.01s]
+[2026-10-09T15:17:56.133+0000] {subprocess.py:106} INFO - [0m15:17:56
+[2026-10-09T15:17:56.134+0000] {subprocess.py:106} INFO - [0m15:17:56  Finished running 17 data tests in 0 hours 0 minutes and 0.19 seconds (0.19s).
+[2026-10-09T15:17:56.154+0000] {subprocess.py:106} INFO - [0m15:17:56
+[2026-10-09T15:17:56.154+0000] {subprocess.py:106} INFO - [0m15:17:56  [32mCompleted successfully[0m
+[2026-10-09T15:17:56.154+0000] {subprocess.py:106} INFO - [0m15:17:56
+[2026-10-09T15:17:56.154+0000] {subprocess.py:106} INFO - [0m15:17:56  Done. PASS=17 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=17
+[2026-10-09T15:17:57.041+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-10-09T15:17:57.053+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-10-09T15:17:57.053+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=retail_daily_pipeline, task_id=data_quality, run_id=evidence_success_20261009T151745, execution_date=20261009T151746, start_date=20261009T151754, end_date=20261009T151757
+[2026-10-09T15:17:57.072+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-10-09T15:17:57.082+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-10-09T15:17:57.082+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

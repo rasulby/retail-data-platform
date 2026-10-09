@@ -1,0 +1,40 @@
+[2026-10-09T15:17:49.416+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-10-09T15:17:49.424+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: retail_daily_pipeline.dbt_staging evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:49.426+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: retail_daily_pipeline.dbt_staging evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:49.427+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2026-10-09T15:17:49.430+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): dbt_staging> on 2026-10-09 15:17:46+00:00
+[2026-10-09T15:17:49.432+0000] {standard_task_runner.py:72} INFO - Started process 1469 to run task
+[2026-10-09T15:17:49.433+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'retail_daily_pipeline', 'dbt_staging', 'evidence_success_20261009T151745', '--job-id', '44', '--raw', '--subdir', 'DAGS_FOLDER/retail_pipeline.py', '--cfg-path', '/tmp/tmp0cmp2jl9']
+[2026-10-09T15:17:49.434+0000] {standard_task_runner.py:105} INFO - Job 44: Subtask dbt_staging
+[2026-10-09T15:17:49.453+0000] {task_command.py:467} INFO - Running <TaskInstance: retail_daily_pipeline.dbt_staging evidence_success_20261009T151745 [running]> on host c6bb6a15c707
+[2026-10-09T15:17:49.484+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering' AIRFLOW_CTX_DAG_ID='retail_daily_pipeline' AIRFLOW_CTX_TASK_ID='dbt_staging' AIRFLOW_CTX_EXECUTION_DATE='2026-10-09T15:17:46+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='evidence_success_20261009T151745'
+[2026-10-09T15:17:49.484+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-10-09T15:17:49.489+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-10-09T15:17:49.490+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt run --profiles-dir /opt/airflow/project/dbt --project-dir /opt/airflow/project/dbt --fail-fast --select tag:staging']
+[2026-10-09T15:17:49.492+0000] {subprocess.py:99} INFO - Output:
+[2026-10-09T15:17:50.219+0000] {subprocess.py:106} INFO - [0m15:17:50  Running with dbt=1.12.5
+[2026-10-09T15:17:50.309+0000] {subprocess.py:106} INFO - [0m15:17:50  Registered adapter: postgres=1.9.0
+[2026-10-09T15:17:50.457+0000] {subprocess.py:106} INFO - [0m15:17:50  Found 10 models, 19 data tests, 4 sources, 476 macros
+[2026-10-09T15:17:50.458+0000] {subprocess.py:106} INFO - [0m15:17:50
+[2026-10-09T15:17:50.458+0000] {subprocess.py:106} INFO - [0m15:17:50  Concurrency: 2 threads (target='dev')
+[2026-10-09T15:17:50.459+0000] {subprocess.py:106} INFO - [0m15:17:50
+[2026-10-09T15:17:50.503+0000] {subprocess.py:106} INFO - [0m15:17:50  1 of 4 START sql view model staging.stg_customers .............................. [RUN]
+[2026-10-09T15:17:50.503+0000] {subprocess.py:106} INFO - [0m15:17:50  2 of 4 START sql view model staging.stg_order_items ............................ [RUN]
+[2026-10-09T15:17:50.549+0000] {subprocess.py:106} INFO - [0m15:17:50  2 of 4 OK created sql view model staging.stg_order_items ....................... [[32mCREATE VIEW[0m in 0.04s]
+[2026-10-09T15:17:50.549+0000] {subprocess.py:106} INFO - [0m15:17:50  1 of 4 OK created sql view model staging.stg_customers ......................... [[32mCREATE VIEW[0m in 0.04s]
+[2026-10-09T15:17:50.550+0000] {subprocess.py:106} INFO - [0m15:17:50  3 of 4 START sql view model staging.stg_orders ................................. [RUN]
+[2026-10-09T15:17:50.551+0000] {subprocess.py:106} INFO - [0m15:17:50  4 of 4 START sql view model staging.stg_products ............................... [RUN]
+[2026-10-09T15:17:50.573+0000] {subprocess.py:106} INFO - [0m15:17:50  3 of 4 OK created sql view model staging.stg_orders ............................ [[32mCREATE VIEW[0m in 0.02s]
+[2026-10-09T15:17:50.574+0000] {subprocess.py:106} INFO - [0m15:17:50  4 of 4 OK created sql view model staging.stg_products .......................... [[32mCREATE VIEW[0m in 0.02s]
+[2026-10-09T15:17:50.579+0000] {subprocess.py:106} INFO - [0m15:17:50
+[2026-10-09T15:17:50.580+0000] {subprocess.py:106} INFO - [0m15:17:50  Finished running 4 view models in 0 hours 0 minutes and 0.12 seconds (0.12s).
+[2026-10-09T15:17:50.600+0000] {subprocess.py:106} INFO - [0m15:17:50
+[2026-10-09T15:17:50.600+0000] {subprocess.py:106} INFO - [0m15:17:50  [32mCompleted successfully[0m
+[2026-10-09T15:17:50.601+0000] {subprocess.py:106} INFO - [0m15:17:50
+[2026-10-09T15:17:50.601+0000] {subprocess.py:106} INFO - [0m15:17:50  Done. PASS=4 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=4
+[2026-10-09T15:17:51.478+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-10-09T15:17:51.490+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-10-09T15:17:51.490+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=retail_daily_pipeline, task_id=dbt_staging, run_id=evidence_success_20261009T151745, execution_date=20261009T151746, start_date=20261009T151749, end_date=20261009T151751
+[2026-10-09T15:17:51.538+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-10-09T15:17:51.550+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-10-09T15:17:51.550+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

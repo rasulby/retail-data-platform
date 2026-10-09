@@ -1,0 +1,152 @@
+{
+  "collected_at": "2026-10-09T15:17:39.906998+00:00",
+  "commit": "9e1ce87f2727b6859bb2618682225cce00d97ac8",
+  "services": {
+    "exit_code": 0,
+    "output": "NAME                                       IMAGE                                    COMMAND                  SERVICE             CREATED      STATUS                    PORTS\nretail-data-platform-airflow-scheduler-1   retail-data-platform-airflow-scheduler   \"/usr/bin/dumb-init \u2026\"   airflow-scheduler   6 days ago   Up 31 minutes (healthy)   8080/tcp\nretail-data-platform-airflow-webserver-1   retail-data-platform-airflow-webserver   \"/usr/bin/dumb-init \u2026\"   airflow-webserver   6 days ago   Up 31 minutes (healthy)   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp\nretail-data-platform-postgres-1            postgres:16-alpine                       \"docker-entrypoint.s\u2026\"   postgres            6 days ago   Up 31 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp\n"
+  },
+  "compose-config": {
+    "exit_code": 0,
+    "output": ""
+  },
+  "static-validation": {
+    "exit_code": 0,
+    "output": " Container retail-data-platform-airflow-scheduler-run-7a2a712918e1 Creating \n Container retail-data-platform-airflow-scheduler-run-7a2a712918e1 Created \n\nAll checks passed!\n.....                                                                    [100%]\n5 passed in 0.03s\n"
+  },
+  "dbt-parse": {
+    "exit_code": 0,
+    "output": "\u001b[0m15:17:44  Running with dbt=1.12.5\n\u001b[0m15:17:44  Registered adapter: postgres=1.9.0\n\u001b[0m15:17:44  Unable to do partial parsing because a project config has changed\n\u001b[0m15:17:44  Performance info: /opt/airflow/project/dbt/target/perf_info.json\n"
+  },
+  "success-trigger": {
+    "exit_code": 0,
+    "output": "[2026-10-09T15:17:46.690+0000] {__init__.py:43} INFO - Loaded API auth backend: airflow.api.auth.backend.session\n                   |                   |                   | data_interval_sta |                   |          |                  | last_scheduling_d |                  |          |            |       \nconf               | dag_id            | dag_run_id        | rt                | data_interval_end | end_date | external_trigger | ecision           | logical_date     | run_type | start_date | state \n===================+===================+===================+===================+===================+==========+==================+===================+==================+==========+============+=======\n{'logical_date':   | retail_daily_pipe | evidence_success_ | 2026-10-08        | 2026-10-09        | None     | True             | None              | 2026-10-09       | manual   | None       | queued\n'2026-01-01'}      | line              | 20261009T151745   | 00:00:00+00:00    | 00:00:00+00:00    |          |                  |                   | 15:17:46+00:00   |          |            |       \n                                                                                                                                                                                                        \n"
+  },
+  "success-run": {
+    "dag_id": "retail_daily_pipeline",
+    "run_id": "evidence_success_20261009T151745",
+    "state": "success",
+    "execution_date": "2026-10-09T15:17:46+00:00",
+    "start_date": "2026-10-09T15:17:47.473522+00:00",
+    "end_date": "2026-10-09T15:18:02.411522+00:00"
+  },
+  "success-tasks": {
+    "exit_code": 0,
+    "output": "dag_id                | execution_date            | task_id         | state   | start_date                       | end_date                        \n======================+===========================+=================+=========+==================================+=================================\nretail_daily_pipeline | 2026-10-09T15:17:46+00:00 | ingest_raw      | success | 2026-10-09T15:17:48.887958+00:00 | 2026-10-09T15:17:49.143098+00:00\nretail_daily_pipeline | 2026-10-09T15:17:46+00:00 | dbt_staging     | success | 2026-10-09T15:17:49.424386+00:00 | 2026-10-09T15:17:51.490181+00:00\nretail_daily_pipeline | 2026-10-09T15:17:46+00:00 | data_quality    | success | 2026-10-09T15:17:54.915604+00:00 | 2026-10-09T15:17:57.053441+00:00\nretail_daily_pipeline | 2026-10-09T15:17:46+00:00 | dbt_curated     | success | 2026-10-09T15:17:52.548658+00:00 | 2026-10-09T15:17:54.807870+00:00\nretail_daily_pipeline | 2026-10-09T15:17:46+00:00 | publish_serving | success | 2026-10-09T15:17:57.615962+00:00 | 2026-10-09T15:18:01.575715+00:00\nretail_daily_pipeline | 2026-10-09T15:17:46+00:00 | generate_data   | success | 2026-10-09T15:17:47.547730+00:00 | 2026-10-09T15:17:47.720650+00:00\n                                                                                                                                                   \n"
+  },
+  "smoke": {
+    "exit_code": 0,
+    "output": "bash scripts/smoke.sh\nChecking PostgreSQL connectivity...\n postgres_reachable \n--------------------\n                  1\n(1 row)\n\nraw.raw_customers: 1750 rows\nstaging.stg_orders: 4200 rows\ncurated.fct_order_items: 14618 rows\nserving.daily_sales_summary: 7 rows\nServing output:\n order_date | total_orders | total_items | gross_revenue | unique_customers \n------------+--------------+-------------+---------------+------------------\n 2026-01-01 |          600 |        5278 |     657501.87 |              231\n 2026-10-01 |          600 |        5318 |     660194.40 |              225\n 2026-10-02 |          600 |        5099 |     675310.39 |              231\n 2026-10-03 |          600 |        5217 |     670083.29 |              229\n 2026-10-04 |          600 |        5156 |     696794.86 |              229\n 2026-10-05 |          600 |        5317 |     675227.94 |              231\n 2026-10-08 |          600 |        5216 |     649739.44 |              221\n(7 rows)\n\nLatest Airflow run state: success\nSmoke test passed.\n"
+  },
+  "layer-counts": {
+    "exit_code": 0,
+    "output": "          relation           | count \n-----------------------------+-------\n raw.raw_customers           |  1750\n raw.raw_products            |   840\n raw.raw_orders              |  4200\n raw.raw_order_items         | 14618\n staging.stg_orders          |  4200\n curated.fct_orders          |  4200\n curated.fct_order_items     | 14618\n serving.daily_sales_summary |     7\n(8 rows)\n\n"
+  },
+  "serving-result": {
+    "exit_code": 0,
+    "output": " order_date | total_orders | total_items | gross_revenue | unique_customers \n------------+--------------+-------------+---------------+------------------\n 2026-01-01 |          600 |        5278 |     657501.87 |              231\n(1 row)\n\n"
+  },
+  "idempotency-before": {
+    "exit_code": 0,
+    "output": "   dataset   | count \n-------------+-------\n customers   |   250\n products    |   120\n orders      |   600\n order_items |  2098\n(4 rows)\n\n"
+  },
+  "rerun-trigger": {
+    "exit_code": 0,
+    "output": "[2026-10-09T15:18:09.929+0000] {__init__.py:43} INFO - Loaded API auth backend: airflow.api.auth.backend.session\n                   |                   |                   | data_interval_sta |                   |          |                  | last_scheduling_d |                  |          |            |       \nconf               | dag_id            | dag_run_id        | rt                | data_interval_end | end_date | external_trigger | ecision           | logical_date     | run_type | start_date | state \n===================+===================+===================+===================+===================+==========+==================+===================+==================+==========+============+=======\n{'logical_date':   | retail_daily_pipe | evidence_rerun_20 | 2026-10-08        | 2026-10-09        | None     | True             | None              | 2026-10-09       | manual   | None       | queued\n'2026-01-01'}      | line              | 261009T151809     | 00:00:00+00:00    | 00:00:00+00:00    |          |                  |                   | 15:18:10+00:00   |          |            |       \n                                                                                                                                                                                                        \n"
+  },
+  "rerun-run": {
+    "dag_id": "retail_daily_pipeline",
+    "run_id": "evidence_rerun_20261009T151809",
+    "state": "success",
+    "execution_date": "2026-10-09T15:18:10+00:00",
+    "start_date": "2026-10-09T15:18:10.933055+00:00",
+    "end_date": "2026-10-09T15:18:26.073786+00:00"
+  },
+  "rerun-tasks": {
+    "exit_code": 0,
+    "output": "dag_id                | execution_date            | task_id         | state   | start_date                       | end_date                        \n======================+===========================+=================+=========+==================================+=================================\nretail_daily_pipeline | 2026-10-09T15:18:10+00:00 | generate_data   | success | 2026-10-09T15:18:11.004949+00:00 | 2026-10-09T15:18:11.183191+00:00\nretail_daily_pipeline | 2026-10-09T15:18:10+00:00 | ingest_raw      | success | 2026-10-09T15:18:12.076208+00:00 | 2026-10-09T15:18:12.278075+00:00\nretail_daily_pipeline | 2026-10-09T15:18:10+00:00 | dbt_staging     | success | 2026-10-09T15:18:12.988295+00:00 | 2026-10-09T15:18:14.998304+00:00\nretail_daily_pipeline | 2026-10-09T15:18:10+00:00 | dbt_curated     | success | 2026-10-09T15:18:16.107784+00:00 | 2026-10-09T15:18:18.404437+00:00\nretail_daily_pipeline | 2026-10-09T15:18:10+00:00 | data_quality    | success | 2026-10-09T15:18:19.075102+00:00 | 2026-10-09T15:18:21.228133+00:00\nretail_daily_pipeline | 2026-10-09T15:18:10+00:00 | publish_serving | success | 2026-10-09T15:18:21.543487+00:00 | 2026-10-09T15:18:25.540620+00:00\n                                                                                                                                                   \n"
+  },
+  "idempotency-after": {
+    "exit_code": 0,
+    "output": "   dataset   | count \n-------------+-------\n customers   |   250\n products    |   120\n orders      |   600\n order_items |  2098\n(4 rows)\n\n"
+  },
+  "second-date-trigger": {
+    "exit_code": 0,
+    "output": "[2026-10-09T15:18:31.697+0000] {__init__.py:43} INFO - Loaded API auth backend: airflow.api.auth.backend.session\n                   |                   |                   | data_interval_sta |                   |          |                  | last_scheduling_d |                  |          |            |       \nconf               | dag_id            | dag_run_id        | rt                | data_interval_end | end_date | external_trigger | ecision           | logical_date     | run_type | start_date | state \n===================+===================+===================+===================+===================+==========+==================+===================+==================+==========+============+=======\n{'logical_date':   | retail_daily_pipe | evidence_second-d | 2026-10-08        | 2026-10-09        | None     | True             | None              | 2026-10-09       | manual   | None       | queued\n'2026-01-02'}      | line              | ate_20261009T1518 | 00:00:00+00:00    | 00:00:00+00:00    |          |                  |                   | 15:18:31+00:00   |          |            |       \n                   |                   | 30                |                   |                   |          |                  |                   |                  |          |            |       \n                                                                                                                                                                                                        \n"
+  },
+  "second-date-run": {
+    "dag_id": "retail_daily_pipeline",
+    "run_id": "evidence_second-date_20261009T151830",
+    "state": "success",
+    "execution_date": "2026-10-09T15:18:31+00:00",
+    "start_date": "2026-10-09T15:18:32.091828+00:00",
+    "end_date": "2026-10-09T15:18:46.618926+00:00"
+  },
+  "second-date-tasks": {
+    "exit_code": 0,
+    "output": "dag_id                | execution_date            | task_id         | state   | start_date                       | end_date                        \n======================+===========================+=================+=========+==================================+=================================\nretail_daily_pipeline | 2026-10-09T15:18:31+00:00 | data_quality    | success | 2026-10-09T15:18:39.179093+00:00 | 2026-10-09T15:18:41.321122+00:00\nretail_daily_pipeline | 2026-10-09T15:18:31+00:00 | publish_serving | success | 2026-10-09T15:18:42.320910+00:00 | 2026-10-09T15:18:46.257793+00:00\nretail_daily_pipeline | 2026-10-09T15:18:31+00:00 | dbt_curated     | success | 2026-10-09T15:18:36.561428+00:00 | 2026-10-09T15:18:38.749592+00:00\nretail_daily_pipeline | 2026-10-09T15:18:31+00:00 | generate_data   | success | 2026-10-09T15:18:32.168281+00:00 | 2026-10-09T15:18:32.339533+00:00\nretail_daily_pipeline | 2026-10-09T15:18:31+00:00 | ingest_raw      | success | 2026-10-09T15:18:33.108056+00:00 | 2026-10-09T15:18:33.311256+00:00\nretail_daily_pipeline | 2026-10-09T15:18:31+00:00 | dbt_staging     | success | 2026-10-09T15:18:34.182739+00:00 | 2026-10-09T15:18:36.280101+00:00\n                                                                                                                                                   \n"
+  },
+  "multiple-dates": {
+    "exit_code": 0,
+    "output": " logical_date | orders \n--------------+--------\n 2026-01-01   |    600\n 2026-01-02   |    600\n(2 rows)\n\n"
+  },
+  "persistence-before": {
+    "exit_code": 0,
+    "output": " count \n-------\n  4800\n(1 row)\n\n"
+  },
+  "persistence-stop": {
+    "exit_code": 0,
+    "output": " Container retail-data-platform-airflow-webserver-1 Stopping \n Container retail-data-platform-airflow-init-1 Stopping \n Container retail-data-platform-airflow-scheduler-1 Stopping \n Container retail-data-platform-airflow-init-1 Stopped \n Container retail-data-platform-airflow-init-1 Removing \n Container retail-data-platform-airflow-init-1 Removed \n Container retail-data-platform-airflow-scheduler-1 Stopped \n Container retail-data-platform-airflow-scheduler-1 Removing \n Container retail-data-platform-airflow-scheduler-1 Removed \n Container retail-data-platform-airflow-webserver-1 Stopped \n Container retail-data-platform-airflow-webserver-1 Removing \n Container retail-data-platform-airflow-webserver-1 Removed \n Container retail-data-platform-postgres-1 Stopping \n Container retail-data-platform-postgres-1 Stopped \n Container retail-data-platform-postgres-1 Removing \n Container retail-data-platform-postgres-1 Removed \n Network retail-data-platform_default Removing \n Network retail-data-platform_default Removed \n"
+  },
+  "persistence-start": {
+    "exit_code": 0,
+    "output": " Network retail-data-platform_default Creating \n Network retail-data-platform_default Creating \n Network retail-data-platform_default Created \n Network retail-data-platform_default Created \n Container retail-data-platform-postgres-1 Creating \n Container retail-data-platform-postgres-1 Created \n Container retail-data-platform-airflow-webserver-1 Creating \n Container retail-data-platform-airflow-scheduler-1 Creating \n Container retail-data-platform-airflow-scheduler-1 Created \n Container retail-data-platform-airflow-webserver-1 Created \n Container retail-data-platform-postgres-1 Starting \n Container retail-data-platform-postgres-1 Started \n Container retail-data-platform-postgres-1 Waiting \n Container retail-data-platform-postgres-1 Waiting \n Container retail-data-platform-postgres-1 Healthy \n Container retail-data-platform-airflow-webserver-1 Starting \n Container retail-data-platform-postgres-1 Healthy \n Container retail-data-platform-airflow-scheduler-1 Starting \n Container retail-data-platform-airflow-scheduler-1 Started \n Container retail-data-platform-airflow-webserver-1 Started \n"
+  },
+  "persistence-after": {
+    "exit_code": 0,
+    "output": " count \n-------\n  4800\n(1 row)\n\n"
+  },
+  "failure-enable": {
+    "exit_code": 0,
+    "output": " Container retail-data-platform-postgres-1 Recreate \n Container retail-data-platform-postgres-1 Recreated \n Container retail-data-platform-airflow-scheduler-1 Recreate \n Container retail-data-platform-airflow-webserver-1 Recreate \n Container retail-data-platform-airflow-webserver-1 Recreated \n Container retail-data-platform-airflow-scheduler-1 Recreated \n Container retail-data-platform-postgres-1 Starting \n Container retail-data-platform-postgres-1 Started \n Container retail-data-platform-postgres-1 Waiting \n Container retail-data-platform-postgres-1 Waiting \n Container retail-data-platform-postgres-1 Healthy \n Container retail-data-platform-postgres-1 Healthy \n Container retail-data-platform-airflow-webserver-1 Starting \n Container retail-data-platform-airflow-scheduler-1 Starting \n Container retail-data-platform-airflow-scheduler-1 Started \n Container retail-data-platform-airflow-webserver-1 Started \n"
+  },
+  "deliberate-failure-trigger": {
+    "exit_code": 0,
+    "output": "[2026-10-09T15:19:09.811+0000] {__init__.py:43} INFO - Loaded API auth backend: airflow.api.auth.backend.session\n                   |                   |                   | data_interval_sta |                   |          |                  | last_scheduling_d |                  |          |            |       \nconf               | dag_id            | dag_run_id        | rt                | data_interval_end | end_date | external_trigger | ecision           | logical_date     | run_type | start_date | state \n===================+===================+===================+===================+===================+==========+==================+===================+==================+==========+============+=======\n{'logical_date':   | retail_daily_pipe | evidence_delibera | 2026-10-08        | 2026-10-09        | None     | True             | None              | 2026-10-09       | manual   | None       | queued\n'2026-01-03'}      | line              | te-failure_202610 | 00:00:00+00:00    | 00:00:00+00:00    |          |                  |                   | 15:19:10+00:00   |          |            |       \n                   |                   | 09T151907         |                   |                   |          |                  |                   |                  |          |            |       \n                                                                                                                                                                                                        \n"
+  },
+  "deliberate-failure-run": {
+    "dag_id": "retail_daily_pipeline",
+    "run_id": "evidence_deliberate-failure_20261009T151907",
+    "state": "failed",
+    "execution_date": "2026-10-09T15:19:10+00:00",
+    "start_date": "2026-10-09T15:19:11.641839+00:00",
+    "end_date": "2026-10-09T15:21:18.462710+00:00"
+  },
+  "deliberate-failure-tasks": {
+    "exit_code": 0,
+    "output": "dag_id                | execution_date            | task_id         | state           | start_date                       | end_date                        \n======================+===========================+=================+=================+==================================+=================================\nretail_daily_pipeline | 2026-10-09T15:19:10+00:00 | dbt_staging     | upstream_failed | 2026-10-09T15:21:14.771328+00:00 | 2026-10-09T15:21:14.771328+00:00\nretail_daily_pipeline | 2026-10-09T15:19:10+00:00 | dbt_curated     | upstream_failed | 2026-10-09T15:21:15.516055+00:00 | 2026-10-09T15:21:15.516055+00:00\nretail_daily_pipeline | 2026-10-09T15:19:10+00:00 | data_quality    | upstream_failed | 2026-10-09T15:21:16.560235+00:00 | 2026-10-09T15:21:16.560235+00:00\nretail_daily_pipeline | 2026-10-09T15:19:10+00:00 | generate_data   | success         | 2026-10-09T15:19:11.743675+00:00 | 2026-10-09T15:19:11.960839+00:00\nretail_daily_pipeline | 2026-10-09T15:19:10+00:00 | ingest_raw      | failed          | 2026-10-09T15:21:14.538049+00:00 | 2026-10-09T15:21:14.707919+00:00\nretail_daily_pipeline | 2026-10-09T15:19:10+00:00 | publish_serving | upstream_failed | 2026-10-09T15:21:17.416357+00:00 | 2026-10-09T15:21:17.416357+00:00\n                                                                                                                                                           \n"
+  },
+  "failure-restore": {
+    "exit_code": 0,
+    "output": " Container retail-data-platform-postgres-1 Recreate \n Container retail-data-platform-postgres-1 Recreated \n Container retail-data-platform-airflow-scheduler-1 Recreate \n Container retail-data-platform-airflow-webserver-1 Recreate \n Container retail-data-platform-airflow-scheduler-1 Recreated \n Container retail-data-platform-airflow-webserver-1 Recreated \n Container retail-data-platform-postgres-1 Starting \n Container retail-data-platform-postgres-1 Started \n Container retail-data-platform-postgres-1 Waiting \n Container retail-data-platform-postgres-1 Waiting \n Container retail-data-platform-postgres-1 Healthy \n Container retail-data-platform-airflow-scheduler-1 Starting \n Container retail-data-platform-postgres-1 Healthy \n Container retail-data-platform-airflow-webserver-1 Starting \n Container retail-data-platform-airflow-scheduler-1 Started \n Container retail-data-platform-airflow-webserver-1 Started \n"
+  },
+  "recovery-trigger": {
+    "exit_code": 0,
+    "output": "[2026-10-09T15:21:31.565+0000] {__init__.py:43} INFO - Loaded API auth backend: airflow.api.auth.backend.session\n                   |                   |                   | data_interval_sta |                   |          |                  | last_scheduling_d |                  |          |            |       \nconf               | dag_id            | dag_run_id        | rt                | data_interval_end | end_date | external_trigger | ecision           | logical_date     | run_type | start_date | state \n===================+===================+===================+===================+===================+==========+==================+===================+==================+==========+============+=======\n{'logical_date':   | retail_daily_pipe | evidence_recovery | 2026-10-08        | 2026-10-09        | None     | True             | None              | 2026-10-09       | manual   | None       | queued\n'2026-01-01'}      | line              | _20261009T152128  | 00:00:00+00:00    | 00:00:00+00:00    |          |                  |                   | 15:21:31+00:00   |          |            |       \n                                                                                                                                                                                                        \n"
+  },
+  "recovery-run": {
+    "dag_id": "retail_daily_pipeline",
+    "run_id": "evidence_recovery_20261009T152128",
+    "state": "success",
+    "execution_date": "2026-10-09T15:21:31+00:00",
+    "start_date": "2026-10-09T15:21:33.448407+00:00",
+    "end_date": "2026-10-09T15:21:49.504404+00:00"
+  },
+  "recovery-tasks": {
+    "exit_code": 0,
+    "output": "dag_id                | execution_date            | task_id         | state   | start_date                       | end_date                        \n======================+===========================+=================+=========+==================================+=================================\nretail_daily_pipeline | 2026-10-09T15:21:31+00:00 | generate_data   | success | 2026-10-09T15:21:33.616590+00:00 | 2026-10-09T15:21:33.799393+00:00\nretail_daily_pipeline | 2026-10-09T15:21:31+00:00 | ingest_raw      | success | 2026-10-09T15:21:34.583704+00:00 | 2026-10-09T15:21:34.796139+00:00\nretail_daily_pipeline | 2026-10-09T15:21:31+00:00 | dbt_staging     | success | 2026-10-09T15:21:35.632724+00:00 | 2026-10-09T15:21:37.783831+00:00\nretail_daily_pipeline | 2026-10-09T15:21:31+00:00 | dbt_curated     | success | 2026-10-09T15:21:38.519396+00:00 | 2026-10-09T15:21:40.926649+00:00\nretail_daily_pipeline | 2026-10-09T15:21:31+00:00 | data_quality    | success | 2026-10-09T15:21:41.662283+00:00 | 2026-10-09T15:21:43.897354+00:00\nretail_daily_pipeline | 2026-10-09T15:21:31+00:00 | publish_serving | success | 2026-10-09T15:21:44.613581+00:00 | 2026-10-09T15:21:48.607561+00:00\n                                                                                                                                                   \n"
+  },
+  "final-smoke": {
+    "exit_code": 0,
+    "output": "bash scripts/smoke.sh\nChecking PostgreSQL connectivity...\n postgres_reachable \n--------------------\n                  1\n(1 row)\n\nraw.raw_customers: 2000 rows\nstaging.stg_orders: 4800 rows\ncurated.fct_order_items: 16676 rows\nserving.daily_sales_summary: 8 rows\nServing output:\n order_date | total_orders | total_items | gross_revenue | unique_customers \n------------+--------------+-------------+---------------+------------------\n 2026-01-01 |          600 |        5278 |     657501.87 |              231\n 2026-01-02 |          600 |        5177 |     635259.71 |              228\n 2026-10-01 |          600 |        5318 |     660194.40 |              225\n 2026-10-02 |          600 |        5099 |     675310.39 |              231\n 2026-10-03 |          600 |        5217 |     670083.29 |              229\n 2026-10-04 |          600 |        5156 |     696794.86 |              229\n 2026-10-05 |          600 |        5317 |     675227.94 |              231\n 2026-10-08 |          600 |        5216 |     649739.44 |              221\n(8 rows)\n\nLatest Airflow run state: success\nSmoke test passed.\n"
+  }
+}

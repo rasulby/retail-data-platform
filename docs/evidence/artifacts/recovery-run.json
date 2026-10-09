@@ -1,0 +1,8 @@
+{
+  "dag_id": "retail_daily_pipeline",
+  "run_id": "evidence_recovery_20261009T152128",
+  "state": "success",
+  "execution_date": "2026-10-09T15:21:31+00:00",
+  "start_date": "2026-10-09T15:21:33.448407+00:00",
+  "end_date": "2026-10-09T15:21:49.504404+00:00"
+}

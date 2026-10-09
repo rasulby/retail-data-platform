@@ -1,0 +1,50 @@
+[2026-10-09T15:17:57.607+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-10-09T15:17:57.615+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: retail_daily_pipeline.publish_serving evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:57.618+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: retail_daily_pipeline.publish_serving evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:57.618+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2026-10-09T15:17:57.622+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): publish_serving> on 2026-10-09 15:17:46+00:00
+[2026-10-09T15:17:57.623+0000] {standard_task_runner.py:72} INFO - Started process 1517 to run task
+[2026-10-09T15:17:57.624+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'retail_daily_pipeline', 'publish_serving', 'evidence_success_20261009T151745', '--job-id', '47', '--raw', '--subdir', 'DAGS_FOLDER/retail_pipeline.py', '--cfg-path', '/tmp/tmpgsltspqv']
+[2026-10-09T15:17:57.625+0000] {standard_task_runner.py:105} INFO - Job 47: Subtask publish_serving
+[2026-10-09T15:17:57.644+0000] {task_command.py:467} INFO - Running <TaskInstance: retail_daily_pipeline.publish_serving evidence_success_20261009T151745 [running]> on host c6bb6a15c707
+[2026-10-09T15:17:57.673+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering' AIRFLOW_CTX_DAG_ID='retail_daily_pipeline' AIRFLOW_CTX_TASK_ID='publish_serving' AIRFLOW_CTX_EXECUTION_DATE='2026-10-09T15:17:46+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='evidence_success_20261009T151745'
+[2026-10-09T15:17:57.674+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-10-09T15:17:57.678+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-10-09T15:17:57.679+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt run --profiles-dir /opt/airflow/project/dbt --project-dir /opt/airflow/project/dbt --fail-fast --select tag:serving && dbt test --profiles-dir /opt/airflow/project/dbt --project-dir /opt/airflow/project/dbt --fail-fast --select tag:serving']
+[2026-10-09T15:17:57.681+0000] {subprocess.py:99} INFO - Output:
+[2026-10-09T15:17:58.408+0000] {subprocess.py:106} INFO - [0m15:17:58  Running with dbt=1.12.5
+[2026-10-09T15:17:58.498+0000] {subprocess.py:106} INFO - [0m15:17:58  Registered adapter: postgres=1.9.0
+[2026-10-09T15:17:58.645+0000] {subprocess.py:106} INFO - [0m15:17:58  Found 10 models, 19 data tests, 4 sources, 476 macros
+[2026-10-09T15:17:58.646+0000] {subprocess.py:106} INFO - [0m15:17:58
+[2026-10-09T15:17:58.646+0000] {subprocess.py:106} INFO - [0m15:17:58  Concurrency: 2 threads (target='dev')
+[2026-10-09T15:17:58.646+0000] {subprocess.py:106} INFO - [0m15:17:58
+[2026-10-09T15:17:58.690+0000] {subprocess.py:106} INFO - [0m15:17:58  1 of 1 START sql table model serving.daily_sales_summary ....................... [RUN]
+[2026-10-09T15:17:58.741+0000] {subprocess.py:106} INFO - [0m15:17:58  1 of 1 OK created sql table model serving.daily_sales_summary .................. [[32mSELECT 7[0m in 0.05s]
+[2026-10-09T15:17:58.746+0000] {subprocess.py:106} INFO - [0m15:17:58
+[2026-10-09T15:17:58.746+0000] {subprocess.py:106} INFO - [0m15:17:58  Finished running 1 table model in 0 hours 0 minutes and 0.10 seconds (0.10s).
+[2026-10-09T15:17:58.767+0000] {subprocess.py:106} INFO - [0m15:17:58
+[2026-10-09T15:17:58.767+0000] {subprocess.py:106} INFO - [0m15:17:58  [32mCompleted successfully[0m
+[2026-10-09T15:17:58.767+0000] {subprocess.py:106} INFO - [0m15:17:58
+[2026-10-09T15:17:58.767+0000] {subprocess.py:106} INFO - [0m15:17:58  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=1
+[2026-10-09T15:18:00.387+0000] {subprocess.py:106} INFO - [0m15:18:00  Running with dbt=1.12.5
+[2026-10-09T15:18:00.477+0000] {subprocess.py:106} INFO - [0m15:18:00  Registered adapter: postgres=1.9.0
+[2026-10-09T15:18:00.628+0000] {subprocess.py:106} INFO - [0m15:18:00  Found 10 models, 19 data tests, 4 sources, 476 macros
+[2026-10-09T15:18:00.629+0000] {subprocess.py:106} INFO - [0m15:18:00
+[2026-10-09T15:18:00.629+0000] {subprocess.py:106} INFO - [0m15:18:00  Concurrency: 2 threads (target='dev')
+[2026-10-09T15:18:00.629+0000] {subprocess.py:106} INFO - [0m15:18:00
+[2026-10-09T15:18:00.668+0000] {subprocess.py:106} INFO - [0m15:18:00  1 of 2 START test not_null_daily_sales_summary_order_date ...................... [RUN]
+[2026-10-09T15:18:00.668+0000] {subprocess.py:106} INFO - [0m15:18:00  2 of 2 START test unique_daily_sales_summary_order_date ........................ [RUN]
+[2026-10-09T15:18:00.694+0000] {subprocess.py:106} INFO - [0m15:18:00  1 of 2 PASS not_null_daily_sales_summary_order_date ............................ [[32mPASS[0m in 0.03s]
+[2026-10-09T15:18:00.694+0000] {subprocess.py:106} INFO - [0m15:18:00  2 of 2 PASS unique_daily_sales_summary_order_date .............................. [[32mPASS[0m in 0.03s]
+[2026-10-09T15:18:00.699+0000] {subprocess.py:106} INFO - [0m15:18:00
+[2026-10-09T15:18:00.700+0000] {subprocess.py:106} INFO - [0m15:18:00  Finished running 2 data tests in 0 hours 0 minutes and 0.07 seconds (0.07s).
+[2026-10-09T15:18:00.720+0000] {subprocess.py:106} INFO - [0m15:18:00
+[2026-10-09T15:18:00.720+0000] {subprocess.py:106} INFO - [0m15:18:00  [32mCompleted successfully[0m
+[2026-10-09T15:18:00.720+0000] {subprocess.py:106} INFO - [0m15:18:00
+[2026-10-09T15:18:00.720+0000] {subprocess.py:106} INFO - [0m15:18:00  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=2
+[2026-10-09T15:18:01.559+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-10-09T15:18:01.575+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-10-09T15:18:01.575+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=retail_daily_pipeline, task_id=publish_serving, run_id=evidence_success_20261009T151745, execution_date=20261009T151746, start_date=20261009T151757, end_date=20261009T151801
+[2026-10-09T15:18:01.628+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-10-09T15:18:01.641+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-10-09T15:18:01.646+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

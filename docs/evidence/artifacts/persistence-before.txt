@@ -1,0 +1,8 @@
+$ docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U retail -d retail -c 'select count(*) from raw.raw_orders;'
+ count 
+-------
+  4800
+(1 row)
+
+
+Exit code: 0

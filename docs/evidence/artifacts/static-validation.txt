@@ -1,0 +1,9 @@
+$ docker compose run --rm --no-deps -v /Users/rasul/retail-data-platform:/evidence-project:ro -w /evidence-project airflow-scheduler bash -c 'PYTHONPYCACHEPREFIX=/tmp/evidence-pycache python -m compileall -q pipeline airflow/dags tests && ruff check --no-cache pipeline tests airflow/dags && pytest -q -p no:cacheprovider -o pythonpath=. && bash -n scripts/smoke.sh'
+ Container retail-data-platform-airflow-scheduler-run-7a2a712918e1 Creating 
+ Container retail-data-platform-airflow-scheduler-run-7a2a712918e1 Created 
+
+All checks passed!
+.....                                                                    [100%]
+5 passed in 0.03s
+
+Exit code: 0

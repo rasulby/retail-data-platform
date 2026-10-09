@@ -1,0 +1,10 @@
+$ docker compose exec -T airflow-scheduler airflow dags trigger retail_daily_pipeline --run-id evidence_rerun_20261009T151809 --conf '{"logical_date": "2026-01-01"}'
+[2026-10-09T15:18:09.929+0000] {__init__.py:43} INFO - Loaded API auth backend: airflow.api.auth.backend.session
+                   |                   |                   | data_interval_sta |                   |          |                  | last_scheduling_d |                  |          |            |       
+conf               | dag_id            | dag_run_id        | rt                | data_interval_end | end_date | external_trigger | ecision           | logical_date     | run_type | start_date | state 
+===================+===================+===================+===================+===================+==========+==================+===================+==================+==========+============+=======
+{'logical_date':   | retail_daily_pipe | evidence_rerun_20 | 2026-10-08        | 2026-10-09        | None     | True             | None              | 2026-10-09       | manual   | None       | queued
+'2026-01-01'}      | line              | 261009T151809     | 00:00:00+00:00    | 00:00:00+00:00    |          |                  |                   | 15:18:10+00:00   |          |            |       
+                                                                                                                                                                                                        
+
+Exit code: 0

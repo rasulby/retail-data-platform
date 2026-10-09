@@ -1,0 +1,42 @@
+[2026-10-09T15:17:52.540+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-10-09T15:17:52.548+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: retail_daily_pipeline.dbt_curated evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:52.551+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: retail_daily_pipeline.dbt_curated evidence_success_20261009T151745 [queued]>
+[2026-10-09T15:17:52.551+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2026-10-09T15:17:52.554+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): dbt_curated> on 2026-10-09 15:17:46+00:00
+[2026-10-09T15:17:52.556+0000] {standard_task_runner.py:72} INFO - Started process 1483 to run task
+[2026-10-09T15:17:52.557+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'retail_daily_pipeline', 'dbt_curated', 'evidence_success_20261009T151745', '--job-id', '45', '--raw', '--subdir', 'DAGS_FOLDER/retail_pipeline.py', '--cfg-path', '/tmp/tmpp6tee55u']
+[2026-10-09T15:17:52.558+0000] {standard_task_runner.py:105} INFO - Job 45: Subtask dbt_curated
+[2026-10-09T15:17:52.576+0000] {task_command.py:467} INFO - Running <TaskInstance: retail_daily_pipeline.dbt_curated evidence_success_20261009T151745 [running]> on host c6bb6a15c707
+[2026-10-09T15:17:52.606+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering' AIRFLOW_CTX_DAG_ID='retail_daily_pipeline' AIRFLOW_CTX_TASK_ID='dbt_curated' AIRFLOW_CTX_EXECUTION_DATE='2026-10-09T15:17:46+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='evidence_success_20261009T151745'
+[2026-10-09T15:17:52.606+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-10-09T15:17:52.611+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-10-09T15:17:52.611+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt run --profiles-dir /opt/airflow/project/dbt --project-dir /opt/airflow/project/dbt --fail-fast --select tag:curated']
+[2026-10-09T15:17:52.614+0000] {subprocess.py:99} INFO - Output:
+[2026-10-09T15:17:53.359+0000] {subprocess.py:106} INFO - [0m15:17:53  Running with dbt=1.12.5
+[2026-10-09T15:17:53.459+0000] {subprocess.py:106} INFO - [0m15:17:53  Registered adapter: postgres=1.9.0
+[2026-10-09T15:17:53.622+0000] {subprocess.py:106} INFO - [0m15:17:53  Found 10 models, 19 data tests, 4 sources, 476 macros
+[2026-10-09T15:17:53.623+0000] {subprocess.py:106} INFO - [0m15:17:53
+[2026-10-09T15:17:53.623+0000] {subprocess.py:106} INFO - [0m15:17:53  Concurrency: 2 threads (target='dev')
+[2026-10-09T15:17:53.623+0000] {subprocess.py:106} INFO - [0m15:17:53
+[2026-10-09T15:17:53.669+0000] {subprocess.py:106} INFO - [0m15:17:53  1 of 5 START sql table model curated.dim_customers ............................. [RUN]
+[2026-10-09T15:17:53.670+0000] {subprocess.py:106} INFO - [0m15:17:53  2 of 5 START sql table model curated.dim_date .................................. [RUN]
+[2026-10-09T15:17:53.721+0000] {subprocess.py:106} INFO - [0m15:17:53  2 of 5 OK created sql table model curated.dim_date ............................. [[32mSELECT 7[0m in 0.05s]
+[2026-10-09T15:17:53.722+0000] {subprocess.py:106} INFO - [0m15:17:53  1 of 5 OK created sql table model curated.dim_customers ........................ [[32mSELECT 1750[0m in 0.05s]
+[2026-10-09T15:17:53.723+0000] {subprocess.py:106} INFO - [0m15:17:53  3 of 5 START sql table model curated.dim_products .............................. [RUN]
+[2026-10-09T15:17:53.724+0000] {subprocess.py:106} INFO - [0m15:17:53  4 of 5 START sql table model curated.fct_order_items ........................... [RUN]
+[2026-10-09T15:17:53.746+0000] {subprocess.py:106} INFO - [0m15:17:53  3 of 5 OK created sql table model curated.dim_products ......................... [[32mSELECT 840[0m in 0.02s]
+[2026-10-09T15:17:53.747+0000] {subprocess.py:106} INFO - [0m15:17:53  5 of 5 START sql table model curated.fct_orders ................................ [RUN]
+[2026-10-09T15:17:53.753+0000] {subprocess.py:106} INFO - [0m15:17:53  4 of 5 OK created sql table model curated.fct_order_items ...................... [[32mSELECT 14618[0m in 0.03s]
+[2026-10-09T15:17:53.767+0000] {subprocess.py:106} INFO - [0m15:17:53  5 of 5 OK created sql table model curated.fct_orders ........................... [[32mSELECT 4200[0m in 0.02s]
+[2026-10-09T15:17:53.772+0000] {subprocess.py:106} INFO - [0m15:17:53
+[2026-10-09T15:17:53.773+0000] {subprocess.py:106} INFO - [0m15:17:53  Finished running 5 table models in 0 hours 0 minutes and 0.15 seconds (0.15s).
+[2026-10-09T15:17:53.794+0000] {subprocess.py:106} INFO - [0m15:17:53
+[2026-10-09T15:17:53.794+0000] {subprocess.py:106} INFO - [0m15:17:53  [32mCompleted successfully[0m
+[2026-10-09T15:17:53.794+0000] {subprocess.py:106} INFO - [0m15:17:53
+[2026-10-09T15:17:53.794+0000] {subprocess.py:106} INFO - [0m15:17:53  Done. PASS=5 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
+[2026-10-09T15:17:54.796+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-10-09T15:17:54.807+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-10-09T15:17:54.807+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=retail_daily_pipeline, task_id=dbt_curated, run_id=evidence_success_20261009T151745, execution_date=20261009T151746, start_date=20261009T151752, end_date=20261009T151754
+[2026-10-09T15:17:54.860+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-10-09T15:17:54.872+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-10-09T15:17:54.872+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

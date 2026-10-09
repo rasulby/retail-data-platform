@@ -1,0 +1,7 @@
+$ docker compose ps
+NAME                                       IMAGE                                    COMMAND                  SERVICE             CREATED      STATUS                    PORTS
+retail-data-platform-airflow-scheduler-1   retail-data-platform-airflow-scheduler   "/usr/bin/dumb-init …"   airflow-scheduler   6 days ago   Up 31 minutes (healthy)   8080/tcp
+retail-data-platform-airflow-webserver-1   retail-data-platform-airflow-webserver   "/usr/bin/dumb-init …"   airflow-webserver   6 days ago   Up 31 minutes (healthy)   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+retail-data-platform-postgres-1            postgres:16-alpine                       "docker-entrypoint.s…"   postgres            6 days ago   Up 31 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+
+Exit code: 0
