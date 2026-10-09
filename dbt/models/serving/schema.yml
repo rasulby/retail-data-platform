@@ -1,0 +1,7 @@
+version: 2
+models:
+  - name: daily_sales_summary
+    columns:
+      - name: order_date
+        data_tests: [not_null, unique]
+

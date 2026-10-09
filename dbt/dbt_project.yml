@@ -1,0 +1,21 @@
+name: retail_platform
+version: 1.0.0
+config-version: 2
+profile: retail_platform
+model-paths: ["models"]
+test-paths: ["tests"]
+clean-targets: ["target", "dbt_packages"]
+models:
+  retail_platform:
+    staging:
+      +schema: staging
+      +materialized: view
+      +tags: [staging]
+    curated:
+      +schema: curated
+      +materialized: table
+      +tags: [curated]
+    serving:
+      +schema: serving
+      +materialized: table
+      +tags: [serving]
